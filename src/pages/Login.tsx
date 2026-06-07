@@ -1,5 +1,5 @@
 import { useState } from "react";
-  import { login } from "../api/authApi";
+  import { login, me } from "../api/authApi";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -15,7 +15,9 @@ const Login = () => {
 
           localStorage.setItem("token", result.token);
 
-          console.log(result);
+          const currentUser = await me();
+
+          console.log(currentUser);
 
     }catch(error){
       console.error("Login failed", error);
