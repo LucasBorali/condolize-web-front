@@ -1,0 +1,47 @@
+.navbar{
+    display: flex;
+    flex-direction: row;    
+    justify-content: space-between;
+    padding: .7rem 5rem;
+    margin: 1rem 10rem;
+    background-color: var(--white);
+    border-radius: 10rem;
+}
+
+.navbar h1{
+    color: var(--prussian-blue);
+}
+
+.navbar div{
+    display: flex;
+    gap: 2rem;
+}
+
+.loginBtn{
+    transition: .2s ease;
+    padding: 0 10px;
+    border-radius: 10rem;
+}
+
+.loginBtn:hover{
+    background-color: var(--whiteish);
+    color: var(--black);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.registerBtn{
+    transition: .2s ease;
+    padding: 0 15px;
+    border-radius: 10rem;
+    background-color: var(--crayola-blue);
+    color: white;
+    font-weight: bold;
+}
+
+.registerBtn:hover{
+    background-color: var(--yellow);
+    color: var(--black);
+    font-weight: bold;
+    font-size: 1rem;
+}
