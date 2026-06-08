@@ -1,11 +1,18 @@
 import { useState } from "react";
-  import { login, me } from "../api/authApi";
+import { login, me } from "../api/authApi";
+import {useAuth} from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
+  const auth = useAuth();
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const loginHandler= async () => {
+
 
     try{
       const result = await login({
@@ -17,7 +24,8 @@ const Login = () => {
 
           const currentUser = await me();
 
-          console.log(currentUser);
+         auth.login(currentUser);
+        navigate("/dashboard");
 
     }catch(error){
       console.error("Login failed", error);
