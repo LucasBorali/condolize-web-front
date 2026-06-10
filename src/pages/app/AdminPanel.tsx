@@ -1,13 +1,13 @@
 import { useAuth } from "../../hooks/useAuth";
 
 
-const Dashboard = () => {
+const AdminPanel = () => {
     const { user } = useAuth();
 
 
   return (
    <> 
-    <h1>Dashboard</h1>
+    <h1>Panel do Administrador</h1>
 
             <p>Email: {user?.email}</p>
 
@@ -18,4 +18,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default AdminPanel

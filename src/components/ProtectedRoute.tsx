@@ -6,10 +6,14 @@ interface Props{
 }
 
 export const ProtectedRoute = ({children}: Props) => {
-    const {isAuthenticated} = useAuth();
+    const {isAuthenticated, loading} = useAuth();
+
+     if (loading) {
+        return <div>Carregando...</div>;
+    }
 
     if(!isAuthenticated){
-        return <Navigate to="/login" />
+        return <Navigate to="/login" replace/>
     }
 
     return children;

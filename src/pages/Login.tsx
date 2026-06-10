@@ -25,7 +25,7 @@ const Login = () => {
           const currentUser = await me();
 
          auth.login(currentUser);
-        navigate("/dashboard");
+        navigate("/admin-panel");
 
     }catch(error){
       console.error("Login failed", error);

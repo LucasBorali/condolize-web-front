@@ -2,7 +2,7 @@ import {Routes, Route} from "react-router-dom"
 import Home from "../pages/Home"
 import Login from "../pages/Login"
 import RegisterCondo from "../pages/RegisterCondo"
-import Dashboard from "../pages/app/Dashboard"
+import AdminPanel from "../pages/app/AdminPanel"
 import { ProtectedRoute } from "../components/ProtectedRoute"
 
 const AppRoutes = () => {
@@ -11,9 +11,9 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />}/>
         <Route path="/login" element={<Login />} />
       <Route path="/register" element={<RegisterCondo />} />
-      <Route path="/dashboard" element={
+      <Route path="/admin-panel" element={
         <ProtectedRoute>
-          <Dashboard />
+          <AdminPanel />
         </ProtectedRoute>
         } />
     </Routes>
