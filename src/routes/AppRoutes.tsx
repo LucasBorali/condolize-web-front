@@ -4,6 +4,7 @@ import Login from "../pages/Login"
 import RegisterCondo from "../pages/RegisterCondo"
 import AdminPanel from "../pages/app/AdminPanel"
 import { ProtectedRoute } from "../components/ProtectedRoute"
+import AdminLayout from "../layout/AdminLayout"
 
 const AppRoutes = () => {
   return (
@@ -13,9 +14,14 @@ const AppRoutes = () => {
       <Route path="/register" element={<RegisterCondo />} />
       <Route path="/admin-panel" element={
         <ProtectedRoute>
-          <AdminPanel />
+          <AdminLayout />
         </ProtectedRoute>
-        } />
+        } >
+           <Route index element={<AdminPanel />} />
+            {/* <Route path="residents" element={<Residents />} />
+            <Route path="reservations" element={<Reservations />} />
+            <Route path="maintenance" element={<Maintenance />} /> */}
+        </Route>
     </Routes>
   )
 }

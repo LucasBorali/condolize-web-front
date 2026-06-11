@@ -1,0 +1,29 @@
+.sidebar {
+    width: 260px;
+    background: var(--prussian-blue);
+    color: var(--platinum);
+}
+
+.sidebar ul {
+   display: flex;
+   flex-direction: column;
+   padding: 0;
+   
+}
+
+.sidebar li {
+    height: 4rem;
+    padding: 0 2rem;
+    align-items: center;
+    display: flex;
+    transition: .2s ease;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.sidebar li:hover{
+background-color: var(--yellow);
+padding: 0 3rem;
+color: var(--News-letter-background);
+
+}
