@@ -7,7 +7,7 @@ const AdminPanel = () => {
 
   return (
    <> 
-    <h1>Seja bem vindo, Lucas</h1>
+    <h1>Seja bem vindo, {user?.name}</h1>
 
             <p>Email: {user?.email}</p>
 

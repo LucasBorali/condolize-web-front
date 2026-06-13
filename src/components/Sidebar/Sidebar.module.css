@@ -2,6 +2,7 @@
     width: 260px;
     background: var(--prussian-blue);
     color: var(--platinum);
+    border-radius:0 20px 20px 0;
 }
 
 .sidebar ul {
