@@ -5,6 +5,7 @@ import RegisterCondo from "../pages/RegisterCondo"
 import AdminPanel from "../pages/app/AdminPanel"
 import { ProtectedRoute } from "../components/ProtectedRoute"
 import AdminLayout from "../layout/AdminLayout"
+import Units from "../pages/app/Units"
 
 const AppRoutes = () => {
   return (
@@ -18,8 +19,8 @@ const AppRoutes = () => {
         </ProtectedRoute>
         } >
            <Route index element={<AdminPanel />} />
-            {/* <Route path="residents" element={<Residents />} />
-            <Route path="reservations" element={<Reservations />} />
+            <Route path="units" element={<Units />} />
+            {/* <Route path="reservations" element={<Reservations />} />
             <Route path="maintenance" element={<Maintenance />} /> */}
         </Route>
     </Routes>

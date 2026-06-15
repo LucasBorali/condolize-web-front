@@ -14,7 +14,7 @@
 
 .sidebar li {
     height: 4rem;
-    padding: 0 2rem;
+    
     align-items: center;
     display: flex;
     transition: .2s ease;
@@ -22,9 +22,19 @@
     cursor: pointer;
 }
 
+.sidebar li a {
+    height: 100%;
+    width: 100%;
+    transition: .2s ease;
+    padding: 0 2rem;
+}
+
+.sidebar li a:hover {
+    translate: 2rem 0;
+}
+
 .sidebar li:hover{
 background-color: var(--yellow);
-padding: 0 3rem;
 color: var(--News-letter-background);
 
 }
