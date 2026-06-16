@@ -7,8 +7,10 @@ const Sidebar = () => {
         <ul>
             <li><Link to="">Início</Link></li>
             <li><Link to="units">Unidades</Link></li>
+            <li><Link to="users">Usuários</Link></li>
             <li><Link to="reservations">Reservas</Link></li>
             <li><Link to="maintenance">Manutenção</Link></li>
+            
         </ul>
     </nav>
   )

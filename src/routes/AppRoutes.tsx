@@ -6,6 +6,7 @@ import AdminPanel from "../pages/app/AdminPanel"
 import { ProtectedRoute } from "../components/ProtectedRoute"
 import AdminLayout from "../layout/AdminLayout"
 import Units from "../pages/app/Units"
+import Users from "../pages/app/Users"
 
 const AppRoutes = () => {
   return (
@@ -20,8 +21,8 @@ const AppRoutes = () => {
         } >
            <Route index element={<AdminPanel />} />
             <Route path="units" element={<Units />} />
-            {/* <Route path="reservations" element={<Reservations />} />
-            <Route path="maintenance" element={<Maintenance />} /> */}
+            <Route path="users" element={<Users />} />
+            {/* <Route path="maintenance" element={<Maintenance />} /> */}
         </Route>
     </Routes>
   )
