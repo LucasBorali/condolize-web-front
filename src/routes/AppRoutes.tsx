@@ -7,6 +7,7 @@ import { ProtectedRoute } from "../components/ProtectedRoute"
 import AdminLayout from "../layout/AdminLayout"
 import Units from "../pages/app/Units"
 import Users from "../pages/app/Users"
+import Residents from "../pages/app/Residents"
 
 const AppRoutes = () => {
   return (
@@ -22,7 +23,7 @@ const AppRoutes = () => {
            <Route index element={<AdminPanel />} />
             <Route path="units" element={<Units />} />
             <Route path="users" element={<Users />} />
-            {/* <Route path="maintenance" element={<Maintenance />} /> */}
+            <Route path="residents" element={<Residents />} />
         </Route>
     </Routes>
   )

@@ -36,18 +36,23 @@ const createUnitHandler = async () => {
 
   return (
     <div>
-        <h1>Unidades</h1>
+      <div className="container">
+        <h1>Cadastrar unidade</h1>
         
-<form>
-<input
-  value={identifier}
-  onChange={(e) => setIdentifier(e.target.value)}
-/>
+        <form>
+        <input
+          value={identifier}
+          onChange={(e) => setIdentifier(e.target.value)}
+        />
 
-<button onClick={createUnitHandler}>
-  Adicionar
-</button>
-</form>
+        <button onClick={createUnitHandler}>
+          Adicionar
+        </button>
+
+    </form>
+      </div>
+      <div className="container">
+      <h1>Unidades</h1>
         {loading ? (
             <p>Carregando unidades...</p>
         ) : units.map(unit => (
@@ -57,7 +62,7 @@ const createUnitHandler = async () => {
           <p>{unit.residentCount} morador(es)</p>
         </div>
       ))}
-        
+        </div>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 export interface Resident {
-    userId: string;
-    name: string;
-    email: string;
+     userId: string;
+    userName: string;
+    unitId: string;
+    unitIdentifier: string;
 }
