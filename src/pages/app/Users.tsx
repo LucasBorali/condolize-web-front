@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { User } from "../../interfaces/User";
-import { createUser, getUsers } from "../../api/userApi";
-import classes from "./Users.module.css";
+import { createUser, deleteUser, getUsers, updateUser } from "../../api/userApi";
+
 
 const Users = () => {
 
@@ -11,6 +11,7 @@ const Users = () => {
     const [email, setEmail] = useState("");
     const [role, setRole] = useState(0);
     const [saving, setSaving] = useState(false);
+    const [editingUserId, setEditingUserId] = useState<string | null>(null);
 
 
 
@@ -29,7 +30,7 @@ const Users = () => {
         }
     };
   
-    const createUserHandler = async (e: React.FormEvent) => {
+    const createUserHandler = async (e: React.SubmitEvent) => {
         e.preventDefault();
          if (saving) return;
 
@@ -53,29 +54,99 @@ const Users = () => {
         
     };
 
+    const editUserHandler =  (user: User) => {
+        setEditingUserId(user.id)
+
+        setName(user.name);
+        setEmail(user.email);
+
+         if (user.role === "Admin")
+        setRole(1);
+    else
+        setRole(0);
+    }
+
+    const saveUserHandler = async (e: React.SubmitEvent) => {
+
+        e.preventDefault
+
+         if (!editingUserId)
+        return;
+
+    try {
+
+        await updateUser(
+            editingUserId,
+            {
+                name,
+                email,
+                role
+            });
+
+        resetForm();
+
+        await fetchUsers();
+
+    } catch (error) {
+        console.error(error);
+    }
+
+    }
+
+    const resetForm = () => {
+
+    setEditingUserId(null);
+
+    setName("");
+    setEmail("");
+    setRole(0);
+};
+
+    const deleteUserHandler = async (id: string ) => {
+        const confirmed = window.confirm("Deseja realmente excluir esse usuário?")
+
+        if(!confirmed)
+            return
+
+        try {
+            await deleteUser(id)
+
+            await fetchUsers()
+        }
+        catch (error: any) {
+            const message = error.response?.data ?? "Erro ao exxcluir usuário"
+
+           alert(message)
+        }
+    }
+
   return (
     <div>
         <div className="container">
         <h1>Cadastrar novo usuário</h1>
-    <form onSubmit={(e) => createUserHandler(e)} className={classes["create-user-form"]}>
-        <div className={classes["create-user-inputs"]}>
+    <form onSubmit={(e) => editingUserId
+            ? saveUserHandler(e)
+            : createUserHandler(e)} className="standard-form">
+        <div className="standard-inputs">
 
        
-    <input className={classes["create-user-input"]}
+    <input className="standard-input"
   value={name}
   placeholder="Nome"
   onChange={(e) => setName(e.target.value)} />
-    <input className={classes["create-user-input"]}
+    <input className="standard-input"
   value={email}
   placeholder="Email"
   onChange={(e) => setEmail(e.target.value)} />
-  <select className={classes["create-user-input"]} value={role} onChange={(e) => setRole(Number(e.target.value))}>
+  <select className="standard-input" value={role} onChange={(e) => setRole(Number(e.target.value))}>
     <option value={0}>Usuário</option>
     <option value={1}>Administrador</option>
   </select>
     </div>
   <button type="submit" disabled={saving} className="standard-button">
-    {saving ? "Adicionando..." : "Adicionar"}
+    {editingUserId
+            ? "Salvar"
+            : "Adicionar"}
   </button>
     </form>
     </div>
@@ -87,7 +158,7 @@ const Users = () => {
         {loading ? (
             <p>Carregando usuários...</p>
         ) : (
-            <table className={classes["users-table"]}>
+            <table className="standard-table">
            <thead>
     <tr>
         <th>Nome</th>
@@ -104,8 +175,8 @@ const Users = () => {
             <td>{user.email}</td>
             <td>{user.role}</td>
             <td>
-                <button className="standard-button">Editar</button>
-                <button className="standard-button">Excluir</button>
+                <button onClick={() => editUserHandler(user)} className="standard-button">Editar</button>
+                <button onClick={() => deleteUserHandler(user.id)} className="standard-button">Excluir</button>
             </td>
         </tr>
     ))}

@@ -38,12 +38,15 @@ import { getUsers } from "../../api/userApi";
             e.preventDefault();
             if (!userId || !unitId) return;
 
+            setLoading(true);
+
             await createResident({ userId, unitId });
             
             setUserId("");
             setUnitId("");
 
             await loadData();
+            setLoading(false);
         }
 
     return (
@@ -52,11 +55,12 @@ import { getUsers } from "../../api/userApi";
             <div className="container">
                 <h1>Vincular Morador</h1>
 
-                <form onSubmit={createResidentHandler}>
-
+                <form onSubmit={createResidentHandler} className="standard-form">
+                <div className="standard-inputs">
                     <select
                         value={userId}
                         onChange={(e) => setUserId(e.target.value)}
+                        className="standard-input"
                     >
                         <option value="">
                             Selecione um usuário
@@ -75,6 +79,7 @@ import { getUsers } from "../../api/userApi";
                     <select
                         value={unitId}
                         onChange={(e) => setUnitId(e.target.value)}
+                        className="standard-input"
                     >
                         <option value="">
                             Selecione uma unidade
@@ -90,17 +95,20 @@ import { getUsers } from "../../api/userApi";
                         ))}
                     </select>
 
-                    <button type="submit">
+                    <button type="submit" className="standard-button">
                         Vincular
                     </button>
+                    </div>  
 
                 </form>
             </div>
 
             <div className="container">
                 <h1>Moradores</h1>
-
-                <table>
+                        {loading ?(
+                            <p>Carregando moradores...</p>
+                        ) : (
+                <table className="standard-table">
                     <thead>
                         <tr>
                             <th>Morador</th>
@@ -119,6 +127,7 @@ import { getUsers } from "../../api/userApi";
                         ))}
                     </tbody>
                 </table>
+                  )}
             </div>
         </div>
     )
