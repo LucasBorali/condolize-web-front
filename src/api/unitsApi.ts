@@ -10,3 +10,13 @@ export const getUnits = async (): Promise<Unit[]> => {
 export const createUnit = async (identifier: string) => {
     await api.post<Unit>("/Units", { identifier });
 }
+
+export const updateUnit = async (id: string, identifier: string) => {
+    const response = await api.put<Unit>(`/Units/${id}`, { identifier });
+
+    return response.data;
+}
+
+export const deleteUnit = async (id: string) => {
+    await api.delete(`/Units/${id}`);
+}

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import type { Unit } from "../../interfaces/Unit";
-import { createUnit, getUnits } from "../../api/unitsApi";
+import { createUnit, deleteUnit, getUnits, updateUnit } from "../../api/unitsApi";
 
 const Units = () => {
     const [units, setUnits] = useState<Unit[]>([]);
     const [loading, setLoading] = useState(true);
     const [identifier, setIdentifier] = useState("");
+    const [editingUnitId, setEditingUnitId] = useState<string | null>(null);
 
     useEffect(() => {
         fetchUnits();
@@ -33,6 +34,38 @@ const createUnitHandler = async () => {
   await fetchUnits();
 }
 
+const editUnitHandler = (unit: Unit) => {
+    setEditingUnitId(unit.id);
+    setIdentifier(unit.identifier);
+}
+
+const saveUnitHandler = async (e: React.SubmitEvent) => {
+    e.preventDefault();
+
+    if (!identifier.trim() || !editingUnitId) return;
+
+    await updateUnit(editingUnitId, identifier);
+
+    setEditingUnitId(null);
+    setIdentifier("");
+
+    await fetchUnits();
+}
+
+const deleteUnitHandler = async (id: string) => {
+    const confirmed = window.confirm(
+            "Deseja realmente excluir esta unidade?"
+        );
+
+        if (!confirmed) return;
+
+    try {
+        await deleteUnit(id);
+        await fetchUnits();
+    } catch (error) {
+        console.error("Error deleting unit:", error);
+    }
+}
 
   return (
     <div>

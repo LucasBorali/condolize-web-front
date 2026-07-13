@@ -56,24 +56,27 @@ const Users = () => {
 
     const editUserHandler =  (user: User) => {
         setEditingUserId(user.id)
-
+        
         setName(user.name);
         setEmail(user.email);
 
+    // Arrumar a conversão do role para número depois
          if (user.role === "Admin")
-        setRole(1);
-    else
         setRole(0);
+    else
+        setRole(1);
     }
 
     const saveUserHandler = async (e: React.SubmitEvent) => {
 
-        e.preventDefault
+        e.preventDefault();
 
          if (!editingUserId)
         return;
 
     try {
+
+        console.log(name, email, role)
 
         await updateUser(
             editingUserId,
@@ -139,8 +142,8 @@ const Users = () => {
   placeholder="Email"
   onChange={(e) => setEmail(e.target.value)} />
   <select className="standard-input" value={role} onChange={(e) => setRole(Number(e.target.value))}>
-    <option value={0}>Usuário</option>
-    <option value={1}>Administrador</option>
+    <option value={0}>Administrador</option>
+    <option value={1}>Usuário</option>
   </select>
     </div>
   <button type="submit" disabled={saving} className="standard-button">

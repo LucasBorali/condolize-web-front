@@ -8,6 +8,7 @@ import AdminLayout from "../layout/AdminLayout"
 import Units from "../pages/app/Units"
 import Users from "../pages/app/Users"
 import Residents from "../pages/app/Residents"
+import PublicSpaces from "../pages/app/PublicSpace"
 
 const AppRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const AppRoutes = () => {
             <Route path="units" element={<Units />} />
             <Route path="users" element={<Users />} />
             <Route path="residents" element={<Residents />} />
+            <Route path="public-spaces" element={<PublicSpaces />} />
         </Route>
     </Routes>
   )
