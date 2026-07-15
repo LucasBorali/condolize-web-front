@@ -9,6 +9,7 @@ import Units from "../pages/app/Units"
 import Users from "../pages/app/Users"
 import Residents from "../pages/app/Residents"
 import PublicSpaces from "../pages/app/PublicSpace"
+import Reservations from "../pages/app/Reservations"
 
 const AppRoutes = () => {
   return (
@@ -26,6 +27,7 @@ const AppRoutes = () => {
             <Route path="users" element={<Users />} />
             <Route path="residents" element={<Residents />} />
             <Route path="public-spaces" element={<PublicSpaces />} />
+            <Route path="reservations" element={<Reservations />} />
         </Route>
     </Routes>
   )

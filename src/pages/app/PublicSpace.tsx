@@ -119,7 +119,7 @@ const PublicSpaces = () => {
             <div className="container">
 
                 <h1>
-                    Comodidades
+                    Cadastrar espaço
                 </h1>
 
                 <form
