@@ -6,6 +6,7 @@ import {
     updatePublicSpace,
     deletePublicSpace
 } from "../../api/publicSpaceApi";
+import RowActions from "../../components/RowActions/RowActions";
 
 const PublicSpaces = () => {
 
@@ -229,29 +230,16 @@ const PublicSpaces = () => {
                                 </td>
 
                                 <td>
-
-                                    <button
-                                        className="standard-button"
-                                        onClick={() =>
-                                            editHandler(
-                                                space
-                                            )
+                                    <RowActions actions={[
+                                        {
+                                            label: "Editar",
+                                            onClick: () => editHandler(space)
+                                        },
+                                        {
+                                            label: "Excluir",
+                                            onClick: () => deleteHandler(space.id)
                                         }
-                                    >
-                                        Editar
-                                    </button>
-
-                                    <button
-                                        className="standard-button"
-                                        onClick={() =>
-                                            deleteHandler(
-                                                space.id
-                                            )
-                                        }
-                                    >
-                                        Excluir
-                                    </button>
-
+                                    ]} />
                                 </td>
 
                             </tr>

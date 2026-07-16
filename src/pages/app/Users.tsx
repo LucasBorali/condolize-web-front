@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { User } from "../../interfaces/User";
 import { createUser, deleteUser, getUsers, updateUser } from "../../api/userApi";
+import RowActions from "../../components/RowActions/RowActions";
 
 
 const Users = () => {
@@ -178,8 +179,16 @@ const Users = () => {
             <td>{user.email}</td>
             <td>{user.role}</td>
             <td>
-                <button onClick={() => editUserHandler(user)} className="standard-button">Editar</button>
-                <button onClick={() => deleteUserHandler(user.id)} className="standard-button">Excluir</button>
+                <RowActions actions={[
+                    {
+                        label: "Editar",
+                        onClick: () => editUserHandler(user)
+                    },
+                    {
+                        label: "Excluir",
+                        onClick: () => deleteUserHandler(user.id)
+                    }
+                ]} />
             </td>
         </tr>
     ))}

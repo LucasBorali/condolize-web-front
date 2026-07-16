@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Unit } from "../../interfaces/Unit";
 import { createUnit, deleteUnit, getUnits, updateUnit } from "../../api/unitsApi";
+import RowActions from "../../components/RowActions/RowActions";
 
 const Units = () => {
     const [units, setUnits] = useState<Unit[]>([]);
@@ -69,35 +70,109 @@ const deleteUnitHandler = async (id: string) => {
 
   return (
     <div>
-      <div className="container">
-        <h1>Cadastrar unidade</h1>
-        
-        <form>
-        <input
-          value={identifier}
-          onChange={(e) => setIdentifier(e.target.value)}
-        />
 
-        <button onClick={createUnitHandler}>
-          Adicionar
-        </button>
+        <div className="container">
 
-    </form>
-      </div>
-      <div className="container">
-      <h1>Unidades</h1>
-        {loading ? (
-            <p>Carregando unidades...</p>
-        ) : units.map(unit => (
-    
-        <div key={unit.id}>
-          <h3>{unit.identifier}</h3>
-          <p>{unit.residentCount} morador(es)</p>
+            <h1>Cadastrar unidade</h1>
+
+            <form
+                onSubmit={editingUnitId ? saveUnitHandler : createUnitHandler}
+                className="standard-form"
+            >
+                <div className="standard-inputs">
+
+                    <input
+                        className="standard-input"
+                        value={identifier}
+                        placeholder="Identificação da unidade"
+                        onChange={(e) =>
+                            setIdentifier(e.target.value)
+                        }
+                    />
+
+                </div>
+
+                {editingUnitId ? (
+                    <button
+                        type="submit"
+                        className="standard-button"
+                       
+                    >
+                        Salvar
+                    </button>
+                ) : (
+                    <button
+                        type="submit"
+                        className="standard-button"
+                    >
+                    Adicionar
+                    </button>
+                )}
+
+            </form>
+
         </div>
-      ))}
+
+        <div className="container">
+
+            <h1>Unidades</h1>
+
+            {loading ? (
+                <p>Carregando unidades...</p>
+            ) : (
+
+                <table className="standard-table">
+
+                    <thead>
+                        <tr>
+                            <th>Unidade</th>
+                            <th>Moradores</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {units.map(unit => (
+
+                            <tr key={unit.id}>
+
+                                <td>{unit.identifier}</td>
+
+                                <td>
+                                    {unit.residentCount}
+                                </td>
+
+                                <td>
+                                    <RowActions actions={[
+                                        {
+                                            label: "Editar",
+                                            onClick: () => editUnitHandler(unit)
+                                        },
+                                        {
+                                            label: "Excluir",
+                                            onClick: () => deleteUnitHandler(unit.id)
+                                        }
+                                    ]} />
+                                   
+
+                                   
+                                </td>
+
+                            </tr>
+
+                        ))}
+
+                    </tbody>
+
+                </table>
+
+            )}
+
         </div>
+
     </div>
-  )
+);
 }
 
 export default Units

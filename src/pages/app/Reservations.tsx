@@ -12,6 +12,7 @@ import {
 
 import { getUsers } from "../../api/userApi";
 import { getPublicSpaces } from "../../api/publicSpaceApi";
+import RowActions from "../../components/RowActions/RowActions";
 
 const Reservations = () => {
 
@@ -281,16 +282,15 @@ const Reservations = () => {
                                     </td>
 
                                     <td>
-                                        <button
-                                            className="standard-button"
-                                            onClick={() =>
-                                                deleteReservationHandler(
-                                                    reservation.id
-                                                )
+                                        <RowActions actions={[
+                                            {
+                                                label: "Excluir",
+                                                onClick: () =>
+                                                    deleteReservationHandler(
+                                                        reservation.id
+                                                    )
                                             }
-                                        >
-                                            Excluir
-                                        </button>
+                                        ]} />
                                     </td>
 
                                 </tr>

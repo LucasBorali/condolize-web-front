@@ -109,11 +109,12 @@ ul {
 .standard-inputs{
     display: flex;
     gap: 1rem;
+    
 
 }
 
 .standard-input{
     padding: 0.5rem;
     font-size: 1rem;
-    width: 20rem;
+    width: 100%;
 }
